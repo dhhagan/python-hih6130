@@ -24,6 +24,5 @@ setup(name='HIH6130',
       packages=['HIH6130',
 			],
 	  install_requires=[
-		'smbus-cffi',
 	  ],
       zip_safe=False)

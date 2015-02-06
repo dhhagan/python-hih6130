@@ -9,10 +9,9 @@ __all__ = ['HIH6130']
 class HIH6130:
 	def __init__(self, address = 0x27):
 		self.address = address
-
 		self.status = None
-		self.relativehumidity = None
-		self.temperature = None
+		self.rh = None
+		self.t = None
 		self.buffer = None
 		self.timestamp = None
 
@@ -28,7 +27,7 @@ class HIH6130:
 		try:
 			self.buffer = self.i2c.read__i2c_block_data(self.address, 0, 4)
 		except:
-			warnings.warn("Could not read from i2c bus.")
+			sys.exit("Could not read from i2c bus.")
 
 		# Set the timestamp for the measurement
 		self.timestamp = datetime.utcnow()
@@ -37,9 +36,9 @@ class HIH6130:
 		self.status = self.buffer[0] >> 6 & 0x03
 
 		# Set the RH reading
-		self.relativehumidity = round(((self.buffer[0] & 0x3f) << 8 | self.buffer[1]) * 100.0 / (2**14 - 1), 2)
+		self.rh = round(((self.buffer[0] & 0x3f) << 8 | self.buffer[1]) * 100.0 / (2**14 - 1), 2)
 
 		# Set the T reading
-		self.temperature = round((float((self.buffer[2] << 6) + (self.buffer[3] >> 2)) / (2**14 - 1)) * 165.0 - 40, 2)
+		self.t = round((float((self.buffer[2] << 6) + (self.buffer[3] >> 2)) / (2**14 - 1)) * 165.0 - 40, 2)
 
 		return

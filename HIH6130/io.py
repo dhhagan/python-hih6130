@@ -14,11 +14,16 @@ class HIH6130:
 		self.t = None
 		self.buffer = None
 		self.timestamp = None
+		self.i2c = smbus.SMBus(1)
 
+		'''
 		try:
 			self.i2c = smbus.SMBus(1)
 		except:
 			sys.exit("Could not start SMBus.")
+		'''
+
+		return
 
 	def read(self):
 		'''

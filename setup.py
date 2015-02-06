@@ -14,7 +14,7 @@ except ImportError:
 	from distutils.core import setup
 
 setup(name='HIH6130',
-      version='0.0.7',
+      version='0.0.8',
       description='Python library for interacting with the Honeywell HIH6130 RHT sensor.',
       url='http://github.com/dhhagan/python-hih6130',
       author='David H Hagan',

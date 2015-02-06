@@ -14,14 +14,12 @@ class HIH6130:
 		self.t = None
 		self.buffer = None
 		self.timestamp = None
-		self.i2c = smbus.SMBus(1)
-
-		'''
+		
 		try:
 			self.i2c = smbus.SMBus(1)
 		except:
 			sys.exit("Could not start SMBus.")
-		'''
+		
 
 		return
 
@@ -29,13 +27,12 @@ class HIH6130:
 		'''
 			read from the I2C bus at address defined above.
 		'''
-		self.buffer = self.i2c.read__i2c_block_data(self.address, 0, 4)
-		'''
+		
 		try:
-			self.buffer = self.i2c.read__i2c_block_data(self.address, 0, 4)
+			self.buffer = self.i2c.read_i2c_block_data(self.address, 0, 4)
 		except:
 			sys.exit("Could not read from i2c bus.")
-		'''
+		
 
 		# Set the timestamp for the measurement
 		self.timestamp = datetime.utcnow()

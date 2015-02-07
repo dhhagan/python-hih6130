@@ -13,7 +13,7 @@ class HIH6130:
 		self.status = None
 		self.rh = None
 		self.t = None
-		self.buffer = None
+		self._buffer = None
 		self.timestamp = None
 		
 		try:
@@ -26,13 +26,13 @@ class HIH6130:
 			read from the i2c bus at address defined above.
 		'''
 		try:
-			self.buffer = self.i2c.read_i2c_block_data(self.address, 0, 4)
+			self._buffer = self.i2c.read_i2c_block_data(self.address, 0, 4)
 		except:
 			raise IOError("Could not read from i2c device located at %s." % self.address )
 		
 		self.timestamp = datetime.utcnow()
-		self.status = self.buffer[0] >> 6 & 0x03
-		self.rh = round(((self.buffer[0] & 0x3f) << 8 | self.buffer[1]) * 100.0 / (2**14 - 1), 2)
-		self.t = round((float((self.buffer[2] << 6) + (self.buffer[3] >> 2)) / (2**14 - 1)) * 165.0 - 40, 2)
+		self.status = self._buffer[0] >> 6 & 0x03
+		self.rh = round(((self._buffer[0] & 0x3f) << 8 | self._buffer[1]) * 100.0 / (2**14 - 1), 2)
+		self.t = round((float((self._buffer[2] << 6) + (self._buffer[3] >> 2)) / (2**14 - 1)) * 165.0 - 40, 2)
 
 		return

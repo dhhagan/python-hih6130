@@ -1,5 +1,5 @@
 # python-hih6130
-Python Library for connecting to/using the Honeywell HIH6130 relative humidity and temperature sensor.
+Python Library for connecting to/using the Honeywell HIH6130 relative humidity and temperature sensor to the Raspberry Pi.
 
 ## Dependencies
 
@@ -18,7 +18,7 @@ This library is listed under the MIT license.
 
 ## Documentation
 
-Check the wiki for full documentation on the API.
+Check the wiki for API information.
 
 ### Sample Script
 

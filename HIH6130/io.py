@@ -30,7 +30,7 @@ class HIH6130:
 		except:
 			raise IOError("Could not read from i2c device located at %s." % self.address )
 		
-		self.timestamp = datetime.utcnow()
+		self.timestamp = datetime.now()
 		self.status = self._buffer[0] >> 6 & 0x03
 		self.rh = round(((self._buffer[0] & 0x3f) << 8 | self._buffer[1]) * 100.0 / (2**14 - 1), 2)
 		self.t = round((float((self._buffer[2] << 6) + (self._buffer[3] >> 2)) / (2**14 - 1)) * 165.0 - 40, 2)

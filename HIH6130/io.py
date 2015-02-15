@@ -5,9 +5,7 @@ __all__ = ['HIH6130']
 
 
 class HIH6130:
-	'''
-		HIH6130() defines a new RHT sensor with default address of 0x27.
-	'''
+	''' HIH6130() returns an instance of the RHT sensor with default address of 0x27. '''
 	def __init__(self, address = 0x27):
 		self.address = address
 		self.status = None
@@ -21,10 +19,10 @@ class HIH6130:
 		except:
 			raise IOError("Could not find i2c device.")
 
+		return self
+
 	def read(self):
-		'''
-			read from the i2c bus at address defined above.
-		'''
+		''' updates rh, t, and timestamp for the HIH6130 instance '''
 		try:
 			self._buffer = self.i2c.read_i2c_block_data(self.address, 0, 4)
 		except:

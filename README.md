@@ -18,7 +18,7 @@ This library is listed under the MIT license.
 
 ## Documentation
 
-Check the wiki for API information.
+Check out the [full docs](http://dhhagan.github.io/python-hih6130/)!
 
 ### Sample Script
 

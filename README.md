@@ -26,4 +26,4 @@ Check out the [full docs](http://dhhagan.github.io/python-hih6130/)!
     
     rht = HIH6130()
     rht.read()
-    print "Timestamp: %s \t RH: %5.2f \t Temp. %5.2f " % (rht.timestamp.strftime("%m-%d-%Y %H:%M:%S"), rht.rh, rht.t) 
+    print ("Timestamp: {0}\tRH: {1}%\tTemp: {2} degC".format(rht.timestamp, rht.rh, rht.t))

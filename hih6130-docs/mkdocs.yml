@@ -1,6 +1,0 @@
-site_name: Python-HIH6130
-pages:
-- ['index.md', 'Home']
-- ['API/methods.md', 'API Reference']
-- ['tutorial/tutorial.md', 'Tutorial']
-repo_url: https://github.com/dhhagan/python-hih6130

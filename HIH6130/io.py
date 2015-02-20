@@ -19,7 +19,7 @@ class HIH6130:
 		except:
 			raise IOError("Could not find i2c device.")
 
-		return self
+		return
 
 	def read(self):
 		''' updates rh, t, and timestamp for the HIH6130 instance '''

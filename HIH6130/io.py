@@ -1,4 +1,4 @@
-import smbus
+import smbus, os
 from datetime import datetime
 
 __all__ = ['HIH6130']
@@ -6,16 +6,32 @@ __all__ = ['HIH6130']
 
 class HIH6130:
 	''' HIH6130() returns an instance of the RHT sensor with default address of 0x27. '''
-	def __init__(self, address = 0x27):
+	def __init__(self, address = 0x27, bus=None):
 		self.address = address
 		self.status = None
 		self.rh = None
 		self.t = None
 		self._buffer = None
 		self.timestamp = None
+
+		if bus is None:
+			for b in range(0,3):
+				path = '/dev/i2c-' + str(b)
+				try:
+					# throws OSError if it dosn't exist
+					s = os.stat(path)
+					bus = b
+					break
+				except:
+					pass
+		# still not found it?
+		if bus is None:
+			# default to 1, will fail but nothing we can do.
+			bus = 1
+		self.bus = bus
 		
 		try:
-			self.i2c = smbus.SMBus(1)
+			self.i2c = smbus.SMBus(self.bus)
 		except:
 			raise IOError("Could not find i2c device.")
 
